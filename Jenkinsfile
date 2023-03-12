@@ -1,9 +1,14 @@
-pipeline{
+pipeline {
     agent any
-
+    
     stages{
-        stage('Test'){
-            sh 'echo this is Jenkins Declarative pipeline'
+        
+        stage('Email Notification'){
+            steps{
+                mail to: "kalodes44@gmail.com, kalodesanket@gmail.com", 
+                subject: "Build Successful",
+                body: "Build Completed Successully ${currentBuild.number}"
+            }
         }
     }
 }
