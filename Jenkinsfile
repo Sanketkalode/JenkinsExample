@@ -1,13 +1,17 @@
-pipeline {
-    agent any
+pipeline{
+    agent {
+        label 'ubuntu'
+    }
     
     stages{
-        
-        stage('Email Notification'){
+        stage('Test agent'){
             steps{
-                mail to: "kalodes44@gmail.com, kalodesanket@gmail.com", 
-                subject: "Build Successful",
-                body: "Build Completed Successully ${currentBuild.number}"
+                sh 'ifconfig'
+            }
+        }
+        stage('Print path'){
+            steps{
+                sh 'pwd'
             }
         }
     }
