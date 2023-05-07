@@ -1,0 +1,19 @@
+---
+- name: Copy a file on remote host
+  hosts: tomcat_server
+  gather_facts: false
+  tasks:
+   - name: Copy file
+     copy:
+      src: abc.txt
+      dest: /tmp/abc.txt
+   - name: Copy Content
+     copy:
+      content: "This content from the playbook copied to file"
+      dest: /tmp/newfile.txt  
+   - name: Delete files
+     file:
+      path:
+       - /tmp/abc.txt
+       - /tmp/newfile.txt
+      state: absent
