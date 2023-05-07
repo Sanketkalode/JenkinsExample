@@ -1,9 +1,14 @@
 pipeline{
     agent any
+    tools {
+        ansible 'ansible'
+    }
 
     stages{
-        stage('Test'){
-            sh 'echo this is Jenkins Declarative pipeline'
+        stage('Copy file to remote server'){
+            steps{
+                ansiblePlaybook credentialsId: 'ansible', installation: 'ansible', inventory: 'inventory', playbook: 'playbook.yaml'
+            }
         }
     }
 }
